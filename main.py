@@ -11,6 +11,7 @@ dataset = ['0.75', '0.25']
 
 word_2, data_2 = GetData(word, dataset)
 symbols_dict = GetSymbolDict(word_2, data_2)
+probs_dict = dict(zip(word_2, data_2))
 
 #print(f"{symbols_dict}")
 codes = GetHuffman(symbols_dict)
@@ -21,8 +22,8 @@ for key in codes:
     print(key, '->', codes[key])
 
 print(f"Entrophy is {eta(data_2)}")
-print(f"Mean length of code word is {mean_len(codes)}")
-print(f"Coding efficiency is {efficiency(codes, eta(data_2))}")
+print(f"Mean length of code word is {mean_len(codes, probs_dict)}")
+print(f"Coding efficiency is {efficiency(codes, eta(data_2), probs_dict)}")
 
 symbols_dict = GetSymbolDict(word_2, data_2)
 codes = fanoshannon(symbols_dict)
@@ -31,6 +32,6 @@ print(f"Shanon")
 for key in codes:
     print(key, '->', codes[key])
 print(f"Entrophy is {eta(data_2)}")
-print(f"Mean length of code word is {mean_len(codes)}")
-print(f"Coding efficiency is {efficiency(codes, eta(data_2))}")
+print(f"Mean length of code word is {mean_len(codes, probs_dict)}")
+print(f"Coding efficiency is {efficiency(codes, eta(data_2), probs_dict)}")
 
