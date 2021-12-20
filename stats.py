@@ -1,10 +1,8 @@
-def mean_len(codes_dict):
-    codes = list(codes_dict.values())
-    return sum([len(code) for code in  codes])/len(codes)
+def mean_len(codes_dict, probs_dict):
+    return sum([len(code) * float(probs_dict[word]) for word, code in codes_dict.items()])
 
-def efficiency(codes_dict, entrophy):
-    codes = list(codes_dict.values())
+def efficiency(codes_dict, entrophy, probs_dict):
     H_X = entrophy
-    L = mean_len(codes)
+    L = mean_len(codes_dict, probs_dict)
     n = H_X / L
     return n
